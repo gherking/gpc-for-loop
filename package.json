@@ -1,7 +1,7 @@
 {
   "name": "gpc-for-loop",
-  "version": "0.0.1",
-  "description": "This repository is a template to create precompilers for GherKing.",
+  "version": "1.0.0",
+  "description": "This precompiler is responsible for repeating selected scenarios or scenario outlines.",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
@@ -25,7 +25,7 @@
     "feature",
     "file"
   ],
-  "author": "GherKing",
+  "author": "GherKing (https://github.com/gherking)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/gherking/gpc-for-loop/issues"
