@@ -2,7 +2,7 @@ import { PreCompiler } from "gherking";
 import { Feature, Rule, Scenario, ScenarioOutline, Tag } from "gherkin-ast";
 import { ForLoopConfiguration } from "./types";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const debug = require("debug")("gpc:for.loop");
+const debug = require("debug")("gpc:for-loop");
 
 const DEFAULT_CONFIG: ForLoopConfiguration = {
     startIndex: 1,
