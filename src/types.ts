@@ -3,4 +3,5 @@ export interface ForLoopConfiguration {
     tagName?: string;
     format?: string;
     startIndex?: number;
+    limitToMaxValue?: boolean;
 }

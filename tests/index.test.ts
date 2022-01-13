@@ -99,9 +99,15 @@ describe("ForLoop", () => {
         });
 
         test("should handle loop value bigger than max", () => {
+            forLoop.options.limitToMaxValue = false;
             scenario.tags.push(new Tag("loop", "11"));
             expect(() => forLoop.getIterationNumber(scenario))
                 .toThrow("Iterator (11) exceeds maximum value of iteration (10)!");
+        });
+
+        test("should handle loop value bigger than max", () => {
+            scenario.tags.push(new Tag("loop", "11"));
+            expect(forLoop.getIterationNumber(scenario)).toBe(10);
         });
 
         test("should parse loop value", () => {

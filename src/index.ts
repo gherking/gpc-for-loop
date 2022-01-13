@@ -8,7 +8,8 @@ const DEFAULT_CONFIG: ForLoopConfiguration = {
     startIndex: 1,
     maxValue: 10,
     tagName: "loop",
-    format: "${name} (${i})"
+    format: "${name} (${i})",
+    limitToMaxValue: true,
 };
 
 class ForLoop implements PreCompiler {
@@ -70,6 +71,9 @@ class ForLoop implements PreCompiler {
             throw new TypeError(`Iterator (${loopTag.value}) is not a number!`);
         }
         if (iterator > this.options.maxValue) {
+            if (this.options.limitToMaxValue) {
+                return this.options.maxValue;
+            }
             throw new Error(`Iterator (${loopTag.value}) exceeds maximum value of iteration (${this.options.maxValue})!`);
         }
         return iterator;
