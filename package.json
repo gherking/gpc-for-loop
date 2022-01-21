@@ -1,7 +1,7 @@
 {
   "name": "gpc-for-loop",
   "version": "1.0.0",
-  "description": "This precompiler is responsible for repeating selected scenarios or scenario outlines.",
+  "description": "A precompiler of GherKing to loop scenarios and scenario outlines to repeat them.",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
@@ -24,6 +24,9 @@
     "precompiler",
     "feature",
     "file"
+  ],
+  "contributors": [
+    "Laszlo Szikszai <sziklaszlo@gmail.com>"
   ],
   "author": "GherKing (https://github.com/gherking)",
   "license": "MIT",
@@ -58,7 +61,7 @@
   "dependencies": {
     "debug": "^4.3.1",
     "gherkin-ast": "^3.2.1",
-    "gherking": "1.0.0-beta.12"
+    "gherking": "1.0.0-beta.17"
   },
   "jest": {
     "reporters": [

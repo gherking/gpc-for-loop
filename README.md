@@ -2,12 +2,13 @@
 
 ![Downloads](https://img.shields.io/npm/dw/gpc-for-loop?style=flat-square) ![Version@npm](https://img.shields.io/npm/v/gpc-for-loop?label=version%40npm&style=flat-square) ![Version@git](https://img.shields.io/github/package-json/v/gherking/gpc-for-loop/master?label=version%40git&style=flat-square) ![CI](https://img.shields.io/github/workflow/status/gherking/gpc-for-loop/CI/master?label=ci&style=flat-square) ![Docs](https://img.shields.io/github/workflow/status/gherking/gpc-for-loop/Docs/master?label=docs&style=flat-square)
 
-This precompiler is responsible for repeating selected scenarios or scenario outlines.
+A precompiler of GherKing to loop scenarios and scenario outlines to repeat them.
+
 In the case of scenario outlines, it copies all rows of examples, resulting in *iterator* × *rows* number of scenarios when tests are run.
 
 ## Usage
 
-Identify scenario or scenario outline to be repeated and mark it with `${loopTag}(${i})` e.g. `@loop(4)`.
+Identify scenario or scenario outline to be repeated and mark it with `${loopTag}(${i})` e.g. `@loop(4)` .
 
 The precompiler will then repeat this scenario or scenario outline for `${i}` times, modifying its name according to the format.
 
