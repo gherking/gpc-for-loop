@@ -1,0 +1,57 @@
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>gpc-for-loop</title><meta name="description" content="Documentation for gpc-for-loop"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">gpc-for-loop</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>gpc-for-loop</h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#gpc-for-loop" id="gpc-for-loop" style="color: inherit; text-decoration: none;">
+  <h1>gpc-for-loop</h1>
+</a>
+<p><img src="https://img.shields.io/npm/dw/gpc-for-loop?style=flat-square" alt="Downloads"> <img src="https://img.shields.io/npm/v/gpc-for-loop?label=version%40npm&style=flat-square" alt="Version@npm"> <img src="https://img.shields.io/github/package-json/v/gherking/gpc-for-loop/master?label=version%40git&style=flat-square" alt="Version@git"> <img src="https://img.shields.io/github/workflow/status/gherking/gpc-for-loop/CI/master?label=ci&style=flat-square" alt="CI"> <img src="https://img.shields.io/github/workflow/status/gherking/gpc-for-loop/Docs/master?label=docs&style=flat-square" alt="Docs"></p>
+<p>A precompiler of GherKing to loop scenarios and scenario outlines to repeat them.</p>
+<p>In the case of scenario outlines, it copies all rows of examples, resulting in <em>iterator</em> × <em>rows</em> number of scenarios when tests are run.</p>
+
+<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+  <h2>Usage</h2>
+</a>
+<p>Identify scenario or scenario outline to be repeated and mark it with <code>${loopTag}(${i})</code> e.g. <code>@loop(4)</code>.</p>
+<p>The precompiler will then repeat this scenario or scenario outline for <code>${i}</code> times, modifying its name according to the format.</p>
+<p>Configurable variables and their default options:</p>
+<table>
+<thead>
+<tr>
+<th align="center">Option</th>
+<th align="center">Default</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>maxValue</code></td>
+<td align="center">10</td>
+<td align="left">Maximum value of iteration</td>
+</tr>
+<tr>
+<td align="center"><code>tagName</code></td>
+<td align="center"><code>&#39;loop&#39;</code></td>
+<td align="left">Tag used to mark scenarios or outlines to be repeated</td>
+</tr>
+<tr>
+<td align="center"><code>format</code></td>
+<td align="center"><code>&#39;${name} (${i})&#39;</code></td>
+<td align="left">Format of the scenario or outline name after repeating</td>
+</tr>
+<tr>
+<td align="center"><code>limitToMaxValue</code></td>
+<td align="center"><code>true</code></td>
+<td align="left">Whether higher iteration values than the max should be limited to the max or error should be thrown ( <code>false</code> )</td>
+</tr>
+</tbody></table>
+<p>See examples for the input files and output in the test/data folder.</p>
+<pre><code class="language-javascript"><span class="hl-0">&#39;use strict&#39;</span><span class="hl-1">;</span><br/><span class="hl-2">const</span><span class="hl-1"> </span><span class="hl-3">compiler</span><span class="hl-1"> = </span><span class="hl-4">require</span><span class="hl-1">(</span><span class="hl-0">&#39;gherking&#39;</span><span class="hl-1">);</span><br/><span class="hl-2">const</span><span class="hl-1"> </span><span class="hl-3">ForLoop</span><span class="hl-1"> = </span><span class="hl-4">require</span><span class="hl-1">(</span><span class="hl-0">&#39;gpc-for-loop&#39;</span><span class="hl-1">);</span><br/><br/><span class="hl-2">let</span><span class="hl-1"> </span><span class="hl-5">ast</span><span class="hl-1"> = </span><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">compiler</span><span class="hl-1">.</span><span class="hl-4">load</span><span class="hl-1">(</span><span class="hl-0">&#39;./features/src/login.feature&#39;</span><span class="hl-1">);</span><br/><span class="hl-5">ast</span><span class="hl-1"> = </span><span class="hl-5">compiler</span><span class="hl-1">.</span><span class="hl-4">process</span><span class="hl-1">(</span><br/><span class="hl-1">    </span><span class="hl-5">ast</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-2">new</span><span class="hl-1"> </span><span class="hl-4">ForLoop</span><span class="hl-1">({</span><br/><span class="hl-1">        </span><span class="hl-7">// config</span><br/><span class="hl-1">    })</span><br/><span class="hl-1">);</span><br/><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-5">compiler</span><span class="hl-1">.</span><span class="hl-4">save</span><span class="hl-1">(</span><span class="hl-0">&#39;./features/dist/login.feature&#39;</span><span class="hl-1">, </span><span class="hl-5">ast</span><span class="hl-1">, {</span><br/><span class="hl-1">    </span><span class="hl-5">lineBreak:</span><span class="hl-1"> </span><span class="hl-0">&#39;</span><span class="hl-8">\r\n</span><span class="hl-0">&#39;</span><br/><span class="hl-1">});</span>
+</code></pre>
+<pre><code class="language-typescript"><span class="hl-0">&#39;use strict&#39;</span><span class="hl-1">;</span><br/><span class="hl-6">import</span><span class="hl-1"> {</span><span class="hl-5">load</span><span class="hl-1">, </span><span class="hl-5">process</span><span class="hl-1">, </span><span class="hl-5">save</span><span class="hl-1">} </span><span class="hl-6">from</span><span class="hl-1"> </span><span class="hl-0">&quot;gherking&quot;</span><span class="hl-1">;</span><br/><span class="hl-6">import</span><span class="hl-1"> </span><span class="hl-5">ForLoop</span><span class="hl-1"> = </span><span class="hl-6">require</span><span class="hl-1">(</span><span class="hl-0">&quot;gpc-for-loop&quot;</span><span class="hl-1">);</span><br/><br/><span class="hl-2">let</span><span class="hl-1"> </span><span class="hl-5">ast</span><span class="hl-1"> = </span><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-4">load</span><span class="hl-1">(</span><span class="hl-0">&quot;./features/src/login.feature&quot;</span><span class="hl-1">);</span><br/><span class="hl-5">ast</span><span class="hl-1"> = </span><span class="hl-4">process</span><span class="hl-1">(</span><br/><span class="hl-1">    </span><span class="hl-5">ast</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-2">new</span><span class="hl-1"> </span><span class="hl-4">ForLoop</span><span class="hl-1">({</span><br/><span class="hl-1">        </span><span class="hl-7">// config</span><br/><span class="hl-1">    })</span><br/><span class="hl-1">);</span><br/><span class="hl-6">await</span><span class="hl-1"> </span><span class="hl-4">save</span><span class="hl-1">(</span><span class="hl-0">&#39;./features/dist/login.feature&#39;</span><span class="hl-1">, </span><span class="hl-5">ast</span><span class="hl-1">, {</span><br/><span class="hl-1">    </span><span class="hl-5">lineBreak:</span><span class="hl-1"> </span><span class="hl-0">&#39;</span><span class="hl-8">\r\n</span><span class="hl-0">&#39;</span><br/><span class="hl-1">});</span>
+</code></pre>
+
+<a href="#other" id="other" style="color: inherit; text-decoration: none;">
+  <h2>Other</h2>
+</a>
+<p>This package uses <a href="https://www.npmjs.com/package/debug">debug</a> for logging, use <code>gpc:for-loop</code> :</p>
+<pre><code class="language-shell"><span class="hl-1">DEBUG=gpc:for-loop* gherking ...</span>
+</code></pre>
+<p>For detailed documentation see the <a href="https://gherking.github.io/gpc-for-loop/">TypeDocs documentation</a>.</p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-class"><a href="classes/export_.html" class="tsd-kind-icon">export=</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Legend</h2><div class="tsd-legend-group"><ul class="tsd-legend"><li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li><li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li><li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li></ul><ul class="tsd-legend"><li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li></ul></div><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>
