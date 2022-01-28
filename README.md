@@ -8,7 +8,7 @@ In the case of scenario outlines, it copies all rows of examples, resulting in *
 
 ## Usage
 
-Identify scenario or scenario outline to be repeated and mark it with `${loopTag}(${i})` e.g. `@loop(4)` .
+Identify scenario or scenario outline to be repeated and mark it with `${loopTag}(${i})` e.g. `@loop(4)`.
 
 The precompiler will then repeat this scenario or scenario outline for `${i}` times, modifying its name according to the format.
 

@@ -61,7 +61,7 @@
   "dependencies": {
     "debug": "^4.3.1",
     "gherkin-ast": "^3.2.1",
-    "gherking": "1.0.0-beta.17"
+    "gherking": "^2.0.0"
   },
   "jest": {
     "reporters": [
