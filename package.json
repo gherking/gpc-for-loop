@@ -1,24 +1,100 @@
 {
   "name": "gpc-for-loop",
-  "version": "0.0.1",
-  "description": "Precompiler for Gherking",
+  "version": "1.0.0",
+  "description": "A precompiler of GherKing to loop scenarios and scenario outlines to repeat them.",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm run buildUpdate && npm test && npm run typedoc",
+    "buildUpdate": "npm run clean && npm run compile && npm run copyToDist",
+    "copyToDist": "copyfiles -f *.txt *.md package.json dist",
+    "typedoc": "typedoc --out ./docs ./src && touch ./docs/.nojekyll",
+    "clean": "rimraf ./dist ./docs ./reports ./coverage",
+    "test": "cross-env JEST_JUNIT_OUTPUT_DIR=./reports jest --coverage",
+    "lint": "eslint . --ext .ts --fix",
+    "compile": "tsc && npm run lint"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gherking/gpc-for-loop.git"
   },
   "keywords": [
-    "Gherking",
-    "Gherking",
-    "Cucumber"
+    "gherkin",
+    "gherking",
+    "precompiler",
+    "feature",
+    "file"
   ],
-  "author": "The GherKing team",
+  "contributors": [
+    "Laszlo Szikszai <sziklaszlo@gmail.com>"
+  ],
+  "author": "GherKing (https://github.com/gherking)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/gherking/gpc-for-loop/issues"
   },
-  "homepage": "https://github.com/gherking/gpc-for-loop#readme"
+  "homepage": "https://github.com/gherking/gpc-for-loop#readme",
+  "files": [
+    "**/*.js",
+    "**/*.d.ts",
+    "**/*.js.map"
+  ],
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.5",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.21",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "copyfiles": "^2.4.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.19.0",
+    "jest": "^26.6.3",
+    "jest-junit": "^13.0.0",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.4.4",
+    "typedoc": "^0.22.10",
+    "typescript": "4.4.4"
+  },
+  "dependencies": {
+    "debug": "^4.3.1",
+    "gherkin-ast": "^3.2.1",
+    "gherking": "^2.0.0"
+  },
+  "jest": {
+    "reporters": [
+      "default",
+      "jest-junit"
+    ],
+    "transform": {
+      "^.+\\.ts?$": "ts-jest"
+    },
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/tests/**/*.test.ts"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "dist"
+    ],
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage",
+    "collectCoverageFrom": [
+      "./src/**/*.ts"
+    ],
+    "moduleFileExtensions": [
+      "ts",
+      "js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 95,
+        "functions": 85,
+        "lines": 85,
+        "statements": 85
+      }
+    }
+  }
 }
