@@ -1,6 +1,6 @@
 # gpc-for-loop
 
-![Downloads](https://img.shields.io/npm/dw/gpc-for-loop?style=flat-square) ![Version@npm](https://img.shields.io/npm/v/gpc-for-loop?label=version%40npm&style=flat-square) ![Version@git](https://img.shields.io/github/package-json/v/gherking/gpc-for-loop/master?label=version%40git&style=flat-square) ![CI](https://img.shields.io/github/actions/workflow/status/gherking/gpc-for-loop/ci.yml?branch=main&label=ci&style=flat-square) ![Docs](https://img.shields.io/github/actions/workflow/status/gherking/gpc-for-loop/dics.yml?branch=main&label=docs&style=flat-square)
+![Downloads](https://img.shields.io/npm/dw/gpc-for-loop?style=flat-square) ![Version@npm](https://img.shields.io/npm/v/gpc-for-loop?label=version%40npm&style=flat-square) ![Version@git](https://img.shields.io/github/package-json/v/gherking/gpc-for-loop/master?label=version%40git&style=flat-square) ![CI](https://img.shields.io/github/actions/workflow/status/gherking/gpc-for-loop/ci.yml?branch=main&label=ci&style=flat-square) ![Docs](https://img.shields.io/github/actions/workflow/status/gherking/gpc-for-loop/docs.yml?branch=main&label=docs&style=flat-square)
 
 A precompiler of GherKing to loop scenarios and scenario outlines to repeat them.
 
