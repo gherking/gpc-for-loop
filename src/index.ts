@@ -1,7 +1,8 @@
 import { Feature, Rule, Scenario, ScenarioOutline, Tag } from "gherkin-ast";
 import { PreCompiler } from "gherking";
 import { ForLoopConfiguration, ForLoopConfigurationSchema } from "./types";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const debug = require("debug")("gpc:for-loop");
 
 class ForLoop implements PreCompiler {
@@ -26,9 +27,9 @@ class ForLoop implements PreCompiler {
       return 0;
     }
     let iterator: number;
-    // @ts-ignore
+    // @ts-expect-error Typing of iterations is not correct.
     if (this.options.iterations?.[loopTag.value]) {
-      // @ts-ignore
+      // @ts-expect-error Typing of iterations is not correct.
       iterator = this.options.iterations[loopTag.value];
       debug("...iterator: %o", iterator);
     } else {

@@ -35,7 +35,7 @@ export const ForLoopConfigurationSchema = yup.object({
     return yup
       .object(
         Object.keys(value).reduce((shape, key) => {
-          // @ts-ignore
+          // @ts-expect-error Shapy does not have an index signature
           shape[key] = yup.number().required();
           return shape;
         }, {}),

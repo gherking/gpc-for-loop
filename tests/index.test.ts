@@ -16,17 +16,17 @@ const e2eTest = (name: string, options?: ForLoopConfiguration) => {
 
     expect(actual).toHaveLength(1);
 
-    // @ts-ignore
+    // @ts-expect-error We need to delete a non-optional property
     delete actual[0].uri;
-    // @ts-ignore
+    // @ts-expect-error We need to delete a non-optional property
     delete actual[0].targetFolder;
-    // @ts-ignore
+    // @ts-expect-error We need to delete a non-optional property
     delete actual[0].sourceFolder;
-    // @ts-ignore
+    // @ts-expect-error We need to delete a non-optional property
     delete expected.uri;
-    // @ts-ignore
+    // @ts-expect-error We need to delete a non-optional property
     delete expected.targetFolder;
-    // @ts-ignore
+    // @ts-expect-error We need to delete a non-optional property
     delete expected.sourceFolder;
 
     expect(actual[0]).toEqual(expected);
@@ -36,9 +36,8 @@ const e2eTest = (name: string, options?: ForLoopConfiguration) => {
 describe("ForLoop", () => {
   describe("options", () => {
     test("should handle startIndex with incorrect type", () => {
-      // @ts-ignore
+      // @ts-expect-error Passed value is not correct by type definition
       expect(() => new ForLoop({ startIndex: "hello" })).toThrow();
-
       expect(() => new ForLoop({ startIndex: NaN })).toThrow();
     });
 
@@ -47,9 +46,8 @@ describe("ForLoop", () => {
     });
 
     test("should handle maxValue with incorrect type", () => {
-      // @ts-ignore
+      // @ts-expect-error Passed value is not correct by type definition
       expect(() => new ForLoop({ maxValue: "hello" })).toThrow();
-
       expect(() => new ForLoop({ maxValue: NaN })).toThrow();
     });
 
@@ -58,18 +56,18 @@ describe("ForLoop", () => {
     });
 
     test("should handle format with incorrect type", () => {
-      // @ts-ignore
+      // @ts-expect-error Passed value is not correct by type definition
       expect(() => new ForLoop({ format: 42 })).toThrow();
     });
 
     test("should set default for format in case of explicit empty value", () => {
-      // @ts-ignore
+      // @ts-expect-error Passed value is not correct by type definition
       const forLoop = new ForLoop({ format: null });
       expect(forLoop.options.format).toEqual("${name} (${i})");
     });
 
     test("should handle tagName with incorrect type", () => {
-      // @ts-ignore
+      // @ts-expect-error Passed value is not correct by type definition
       expect(() => new ForLoop({ tagName: 42 })).toThrow();
     });
 
@@ -148,7 +146,7 @@ describe("ForLoop", () => {
     test("should handle default config", e2eTest("default"));
     test(
       "should handle custom config",
-      // @ts-ignore smth wrong with yup and TS typechecker
+      // @ts-expect-error Something wrong with the infered type, optional fields are mandatory
       e2eTest("custom", {
         maxValue: 4,
         startIndex: 11,
@@ -159,7 +157,7 @@ describe("ForLoop", () => {
     );
     test(
       "should handle iterations",
-      // @ts-ignore smth wrong with yup and TS typechecker
+      // @ts-expect-error Something wrong with the infered type, optional fields are mandatory
       e2eTest("iterations", {
         iterations: {
           stress: 4,
