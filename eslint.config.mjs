@@ -1,9 +1,11 @@
 // @ts-check
 
-import eslint from "@eslint/js";
 import tseslint from "typescript-eslint";
 
-export default tseslint.config(eslint.configs.recommended, ...tseslint.configs.strict, ...tseslint.configs.stylistic, {
+const config = tseslint.config({
+  files: ["src/**/*.ts", "tests/**/*.ts"],
+  ignores: ["dist/**/*.js", "dist/**/*.ts"],
+  extends: [...tseslint.configs.recommended],
   rules: {
     "@typescript-eslint/no-unused-vars": [
       "error",
@@ -11,5 +13,10 @@ export default tseslint.config(eslint.configs.recommended, ...tseslint.configs.s
         argsIgnorePattern: "^_",
       },
     ],
+    "@typescript-eslint/no-require-imports": 0,
   },
 });
+
+// console.log(config);
+
+export default config;

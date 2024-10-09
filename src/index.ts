@@ -2,7 +2,6 @@ import { Feature, Rule, Scenario, ScenarioOutline, Tag } from "gherkin-ast";
 import { PreCompiler } from "gherking";
 import { ForLoopConfiguration, ForLoopConfigurationSchema } from "./types";
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
 const debug = require("debug")("gpc:for-loop");
 
 class ForLoop implements PreCompiler {
