@@ -1,6 +1,6 @@
 {
   "name": "gpc-for-loop",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A precompiler of GherKing to loop scenarios and scenario outlines to repeat them.",
   "main": "index.js",
   "types": "index.d.ts",
@@ -10,8 +10,8 @@
     "copyToDist": "copyfiles -f *.txt *.md package.json dist",
     "typedoc": "typedoc --out ./docs ./src && touch ./docs/.nojekyll",
     "clean": "rimraf ./dist ./docs ./reports ./coverage",
-    "test": "cross-env JEST_JUNIT_OUTPUT_DIR=./reports jest --coverage",
-    "lint": "eslint . --ext .ts --fix",
+    "test": "dotenv-ng --var JEST_JUNIT_OUTPUT_DIR=./reports --- jest --coverage",
+    "lint": "eslint . --fix",
     "compile": "tsc && npm run lint"
   },
   "repository": {
@@ -43,25 +43,27 @@
     "node": ">=12.0.0"
   },
   "devDependencies": {
-    "@types/debug": "^4.1.5",
-    "@types/jest": "^26.0.20",
-    "@types/node": "^14.14.21",
-    "@typescript-eslint/eslint-plugin": "^4.14.1",
-    "@typescript-eslint/parser": "^4.14.1",
+    "@types/debug": "^4.1.12",
+    "@types/jest": "^29.5.13",
+    "@types/node": "^22.7.5",
     "copyfiles": "^2.4.1",
-    "cross-env": "^7.0.3",
-    "eslint": "^7.19.0",
+    "dotenv-ng": "^1.4.0",
+    "eslint": "^9.12.0",
     "jest": "^29.7.0",
-    "jest-junit": "^13.0.0",
-    "rimraf": "^3.0.2",
-    "ts-jest": "^29.1.4",
-    "typedoc": "^0.22.10",
-    "typescript": "4.4.4"
+    "jest-junit": "^16.0.0",
+    "rimraf": "^6.0.1",
+    "ts-jest": "^29.2.5",
+    "typedoc": "^0.26.8",
+    "typescript": "^5.6.2"
   },
   "dependencies": {
-    "debug": "^4.3.1",
-    "gherkin-ast": "^3.2.1",
-    "gherking": "^2.0.0"
+    "@eslint/js": "^9.12.0",
+    "@types/eslint__js": "^8.42.3",
+    "debug": "^4.3.7",
+    "gherkin-ast": "^3.4.2",
+    "gherking": "^2.4.0",
+    "typescript-eslint": "^8.8.1",
+    "yup": "^1.4.0"
   },
   "jest": {
     "reporters": [
