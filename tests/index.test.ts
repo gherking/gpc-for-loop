@@ -16,17 +16,11 @@ const e2eTest = (name: string, options?: ForLoopConfiguration) => {
 
     expect(actual).toHaveLength(1);
 
-    // @ts-expect-error We need to delete a non-optional property
     delete actual[0].uri;
-    // @ts-expect-error We need to delete a non-optional property
     delete actual[0].targetFolder;
-    // @ts-expect-error We need to delete a non-optional property
     delete actual[0].sourceFolder;
-    // @ts-expect-error We need to delete a non-optional property
     delete expected.uri;
-    // @ts-expect-error We need to delete a non-optional property
     delete expected.targetFolder;
-    // @ts-expect-error We need to delete a non-optional property
     delete expected.sourceFolder;
 
     expect(actual[0]).toEqual(expected);
@@ -61,7 +55,6 @@ describe("ForLoop", () => {
     });
 
     test("should set default for format in case of explicit empty value", () => {
-      // @ts-expect-error Passed value is not correct by type definition
       const forLoop = new ForLoop({ format: null });
       expect(forLoop.options.format).toEqual("${name} (${i})");
     });
@@ -146,7 +139,6 @@ describe("ForLoop", () => {
     test("should handle default config", e2eTest("default"));
     test(
       "should handle custom config",
-      // @ts-expect-error Something wrong with the infered type, optional fields are mandatory
       e2eTest("custom", {
         maxValue: 4,
         startIndex: 11,
@@ -157,7 +149,6 @@ describe("ForLoop", () => {
     );
     test(
       "should handle iterations",
-      // @ts-expect-error Something wrong with the infered type, optional fields are mandatory
       e2eTest("iterations", {
         iterations: {
           stress: 4,
