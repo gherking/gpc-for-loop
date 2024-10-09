@@ -1,6 +1,6 @@
 {
   "name": "gpc-for-loop",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A precompiler of GherKing to loop scenarios and scenario outlines to repeat them.",
   "main": "index.js",
   "types": "index.d.ts",
@@ -43,6 +43,8 @@
     "node": ">=12.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.12.0",
+    "@types/eslint__js": "^8.42.3",
     "@types/debug": "^4.1.12",
     "@types/jest": "^29.5.13",
     "@types/node": "^22.7.5",
@@ -54,15 +56,13 @@
     "rimraf": "^6.0.1",
     "ts-jest": "^29.2.5",
     "typedoc": "^0.26.8",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "typescript-eslint": "^8.8.1"
   },
   "dependencies": {
-    "@eslint/js": "^9.12.0",
-    "@types/eslint__js": "^8.42.3",
     "debug": "^4.3.7",
     "gherkin-ast": "^3.4.2",
     "gherking": "^2.4.0",
-    "typescript-eslint": "^8.8.1",
     "yup": "^1.4.0"
   },
   "jest": {
